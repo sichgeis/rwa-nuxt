@@ -10,16 +10,6 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
-          <div class="feed-toggle">
-            <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
-                <a class="nav-link disabled" href="">Your Feed</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="">Global Feed</a>
-              </li>
-            </ul>
-          </div>
 
           <div class="article-preview">
             <div class="article-meta">
@@ -62,23 +52,6 @@
               <p>This is the description for the post.</p>
               <span>Read more...</span>
             </a>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="sidebar">
-            <p>Popular Tags</p>
-
-            <div class="tag-list">
-              <a href="" class="tag-pill tag-default">programming</a>
-              <a href="" class="tag-pill tag-default">javascript</a>
-              <a href="" class="tag-pill tag-default">emberjs</a>
-              <a href="" class="tag-pill tag-default">angularjs</a>
-              <a href="" class="tag-pill tag-default">react</a>
-              <a href="" class="tag-pill tag-default">mean</a>
-              <a href="" class="tag-pill tag-default">node</a>
-              <a href="" class="tag-pill tag-default">rails</a>
-            </div>
           </div>
         </div>
       </div>
@@ -177,6 +150,63 @@ export default {
 
   &:hover {
     text-decoration: inherit !important;
+  }
+}
+
+.article-meta {
+  display:block;
+  position:relative;
+  font-weight: 300;
+
+  img {
+    display:inline-block;
+    vertical-align: middle;
+    height:32px;
+    width:32px;
+    border-radius:30px;
+  }
+
+  .info {
+    margin:0 1.5rem 0 0.3rem;
+    display:inline-block;
+    vertical-align: middle;
+    line-height: 1rem;
+
+    .author {
+      display:block;
+      font-weight: 500 !important;
+    }
+    .date {
+      color:#bbb;
+      font-size:0.8rem;
+      display:block;
+    }
+
+  }
+}
+
+.article-preview {
+  border-top:1px solid rgba(0,0,0,.1);
+  padding:1.5rem 0;
+
+  .article-meta {
+    margin:0 0 1rem 0;
+  }
+  .preview-link {
+    h1 {
+      font-weight:700 !important;
+      font-size:2rem !important;
+    }
+    p {
+      font-family: 'Source Serif Pro', serif;
+      margin-bottom:0;
+    }
+    // "Read more" span
+    span {
+      font-size:0.8rem;
+      font-weight:300;
+      color:#bbb;
+    }
   }
 }
 </style>
