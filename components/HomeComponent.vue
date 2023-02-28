@@ -11,58 +11,40 @@
       <div class="row">
         <div class="col-md-9">
 
-          <div class="article-preview">
+          <div class="article-preview" v-for="article in articles">
             <div class="article-meta">
               <a href="profile.html"
-                ><img src="http://i.imgur.com/Qr71crq.jpg"
+                ><img :src=article.author.image
               /></a>
               <div class="info">
-                <a href="" class="author">Eric Simons</a>
-                <span class="date">January 20th</span>
+                <a href="" class="author">{{ article.author.username }}</a>
+                <span class="date">{{ formatDate(article.createdAt) }}</span>
               </div>
               <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                <i class="ion-heart"></i> 29
+                <i class="ion-heart"></i> {{ article.favoritesCount }}
               </button>
             </div>
             <a href="" class="preview-link">
-              <h1>How to build webapps that scale</h1>
-              <p>This is the description for the post.</p>
+              <h1>{{ article.title }}</h1>
+              <p>{{ article.description }}</p>
               <span>Read more...</span>
             </a>
           </div>
 
-          <div class="article-preview">
-            <div class="article-meta">
-              <a href="profile.html"
-                ><img src="http://i.imgur.com/N4VcUeJ.jpg"
-              /></a>
-              <div class="info">
-                <a href="" class="author">Albert Pai</a>
-                <span class="date">January 20th</span>
-              </div>
-              <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                <i class="ion-heart"></i> 32
-              </button>
-            </div>
-            <a href="" class="preview-link">
-              <h1>
-                The song you won't ever stop singing. No matter how hard you
-                try.
-              </h1>
-              <p>This is the description for the post.</p>
-              <span>Read more...</span>
-            </a>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: 'HomePage',
-}
+
+<script setup>
+import { computed } from 'vue'
+import { useStore } from '@nuxtjs/composition-api'
+import formatDate from '../shared/helper/useFormatDate'
+
+const articles = computed(() => useStore().state.articles.articles)
 </script>
+
 <style lang="scss">
 @import 'shared/styles/variables';
 @import 'shared/styles/overrides';
@@ -154,58 +136,57 @@ export default {
 }
 
 .article-meta {
-  display:block;
-  position:relative;
+  display: block;
+  position: relative;
   font-weight: 300;
 
   img {
-    display:inline-block;
+    display: inline-block;
     vertical-align: middle;
-    height:32px;
-    width:32px;
-    border-radius:30px;
+    height: 32px;
+    width: 32px;
+    border-radius: 30px;
   }
 
   .info {
-    margin:0 1.5rem 0 0.3rem;
-    display:inline-block;
+    margin: 0 1.5rem 0 0.3rem;
+    display: inline-block;
     vertical-align: middle;
     line-height: 1rem;
 
     .author {
-      display:block;
+      display: block;
       font-weight: 500 !important;
     }
     .date {
-      color:#bbb;
-      font-size:0.8rem;
-      display:block;
+      color: #bbb;
+      font-size: 0.8rem;
+      display: block;
     }
-
   }
 }
 
 .article-preview {
-  border-top:1px solid rgba(0,0,0,.1);
-  padding:1.5rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 0;
 
   .article-meta {
-    margin:0 0 1rem 0;
+    margin: 0 0 1rem 0;
   }
   .preview-link {
     h1 {
-      font-weight:700 !important;
-      font-size:2rem !important;
+      font-weight: 700 !important;
+      font-size: 2rem !important;
     }
     p {
       font-family: 'Source Serif Pro', serif;
-      margin-bottom:0;
+      margin-bottom: 0;
     }
     // "Read more" span
     span {
-      font-size:0.8rem;
-      font-weight:300;
-      color:#bbb;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #bbb;
     }
   }
 }
