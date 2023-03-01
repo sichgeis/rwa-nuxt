@@ -10,12 +10,9 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
-
           <div class="article-preview" v-for="article in articles">
             <div class="article-meta">
-              <a href="profile.html"
-                ><img :src=article.author.image
-              /></a>
+              <a href="profile.html"><img :src="article.author.image" /></a>
               <div class="info">
                 <a href="" class="author">{{ article.author.username }}</a>
                 <span class="date">{{ formatDate(article.createdAt) }}</span>
@@ -30,7 +27,6 @@
               <span>Read more...</span>
             </a>
           </div>
-
         </div>
       </div>
     </div>
@@ -38,11 +34,16 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { onMounted, computed } from 'vue'
 import { useStore } from '@nuxtjs/composition-api'
 import formatDate from '../shared/helper/useFormatDate'
+import { FETCH_ARTICLES } from '../store/action-types'
 
-const articles = computed(() => useStore().state.articles.articles)
+onMounted(() => {
+  useStore().dispatch(FETCH_ARTICLES)
+})
+
+const articles = computed(() => useStore().state.articles?.articles)
 </script>
 
 <style lang="scss">
